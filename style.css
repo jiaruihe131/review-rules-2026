@@ -279,4 +279,6 @@ body.lock .fb-fab{display:none}
 @media (max-width:760px){.fb-fab{right:16px;bottom:16px;padding:12px}.fb-fab span{display:none}.nav-fb{display:none}}
 
 .idf-multi{font-style:normal;font-weight:400;color:var(--sub);font-size:12px;margin-left:8px}
-
+.idf-other{width:100%;margin-top:10px;font:inherit;font-size:15px;padding:10px 14px;border:1px solid var(--line);border-radius:12px;outline:0;transition:border-color .2s,box-shadow .2s;animation:fade .2s}
+.idf-other:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,113,227,.12)}
+.idf-other[hidden]{display:none}

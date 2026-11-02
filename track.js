@@ -49,8 +49,18 @@ window.RR_API = 'https://ghjqqz-gary-d1g24ywqt5096ad9c.service.tcloudbase.com/rr
   window.addEventListener('pagehide', () => { ruleClose(); flush(true); });
 
   // ---------- 身份表单 ----------
-  function opts(list, name) {
-    return list.map(v => `<label class="idf-chip"><input type="checkbox" name="${name}" value="${v}"><span>${v}</span></label>`).join('');
+  function opts(list, name, ph) {
+    return list.map(v => `<label class="idf-chip"><input type="checkbox" name="${name}" value="${v}"><span>${v}</span></label>`).join('')
+      + `<input class="idf-other" name="${name}_other" maxlength="20" placeholder="${ph}" hidden>`;
+  }
+  // 「其他」勾选时显示手填框；值存为「其他（xxx）」
+  const OTHER = /^其他（(.*)）$/;
+  function pick(f, name) {
+    return [...f.querySelectorAll(`input[name="${name}"]:checked`)].map(x => {
+      if (x.value !== '其他') return x.value;
+      const t = f[name + '_other'].value.trim();
+      return t ? `其他（${t}）` : '';
+    });
   }
   function showForm(edit) {
     const el = document.createElement('div');
@@ -62,8 +72,8 @@ window.RR_API = 'https://ghjqqz-gary-d1g24ywqt5096ad9c.service.tcloudbase.com/rr
         <p class="idf-sub">只需填写一次，之后打开会自动记住。</p>
         <label class="idf-field"><span>公司 / 品牌名称<i>*</i></span><input name="company" maxlength="60" required placeholder="例如：某某日化"></label>
         <label class="idf-field"><span>你的称呼<i>*</i></span><input name="name" maxlength="30" required placeholder="例如：王经理"></label>
-        <div class="idf-field"><span>身份<i>*</i><em class="idf-multi">可多选</em></span><div class="idf-chips">${opts(ROLES, 'role')}</div></div>
-        <div class="idf-field"><span>主营行业<i>*</i><em class="idf-multi">可多选</em></span><div class="idf-chips">${opts(INDS, 'industry')}</div></div>
+        <div class="idf-field"><span>身份<i>*</i><em class="idf-multi">可多选</em></span><div class="idf-chips">${opts(ROLES, 'role', '请填写你的身份，例如：MCN 机构')}</div></div>
+        <div class="idf-field"><span>主营行业<i>*</i><em class="idf-multi">可多选</em></span><div class="idf-chips">${opts(INDS, 'industry', '请填写行业，例如：美妆、宠物')}</div></div>
         <p class="idf-err" hidden>请把信息填写完整，身份和主营行业至少各选一项</p>
         <button type="submit" class="idf-btn">进入查看</button>
         ${edit ? '<button type="button" class="idf-cancel">取消</button>' : ''}
@@ -75,9 +85,20 @@ window.RR_API = 'https://ghjqqz-gary-d1g24ywqt5096ad9c.service.tcloudbase.com/rr
     if (user) {
       f.company.value = user.company; f.name.value = user.name;
       [['role', user.role], ['industry', user.industry]].forEach(([n, v]) => {
-        String(v || '').split('、').forEach(x => { const r = f.querySelector(`input[name="${n}"][value="${x}"]`); if (r) r.checked = true; });
+        String(v || '').split('、').forEach(x => {
+          const m = x.match(OTHER), val = m ? '其他' : x;
+          const r = f.querySelector(`input[name="${n}"][value="${val}"]`); if (r) r.checked = true;
+          if (m) f[n + '_other'].value = m[1];
+        });
       });
     }
+    f.addEventListener('input', () => { el.querySelector('.idf-err').hidden = true; });
+    f.addEventListener('change', () => { el.querySelector('.idf-err').hidden = true; });
+    ['role', 'industry'].forEach(n => {
+      const box = f[n + '_other'], cb = f.querySelector(`input[name="${n}"][value="其他"]`);
+      box.hidden = !cb.checked;
+      cb.addEventListener('change', () => { box.hidden = !cb.checked; if (cb.checked) setTimeout(() => box.focus(), 0); });
+    });
     f.addEventListener('input', () => { el.querySelector('.idf-err').hidden = true; });
     f.addEventListener('change', () => { el.querySelector('.idf-err').hidden = true; });
     setTimeout(() => f.company.focus(), 50);
@@ -87,10 +108,12 @@ window.RR_API = 'https://ghjqqz-gary-d1g24ywqt5096ad9c.service.tcloudbase.com/rr
       e.preventDefault();
       const u = {
         company: f.company.value.trim(), name: f.name.value.trim(),
-        role: [...f.querySelectorAll('input[name="role"]:checked')].map(x => x.value).join('、'),
-        industry: [...f.querySelectorAll('input[name="industry"]:checked')].map(x => x.value).join('、')
+        role: pick(f, 'role'), industry: pick(f, 'industry')
       };
-      if (!u.company || !u.name || !u.role || !u.industry) { el.querySelector('.idf-err').hidden = false; return; }
+      const err = el.querySelector('.idf-err');
+      if (u.role.includes('') || u.industry.includes('')) { err.textContent = '选了「其他」，请在下方填写具体内容'; err.hidden = false; return; }
+      u.role = u.role.join('、'); u.industry = u.industry.join('、');
+      if (!u.company || !u.name || !u.role || !u.industry) { err.textContent = '请把信息填写完整，身份和主营行业至少各选一项'; err.hidden = false; return; }
       user = u;
       localStorage.setItem(KEY, JSON.stringify(u));
       el.remove(); document.body.classList.remove('lock');

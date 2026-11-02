@@ -89,8 +89,7 @@ window.RULES = [
     { src: 'img/r2_7.jpg', type: 'no', cap: '拒绝案例' },
     { src: 'img/r2_8.jpg', type: 'no', cap: '拒绝案例' },
     { src: 'img/r2_9.jpg', type: 'no', cap: '拒绝案例' },
-    { src: 'img/r2_10.jpg', type: 'no', cap: '拒绝案例' },
-    { src: 'img/r2_11.jpg', type: 'no', cap: '拒绝案例' }
+    { src: 'img/r2_10.jpg', type: 'no', cap: '拒绝案例' }
   ]
 },
 {
@@ -431,7 +430,7 @@ window.RULES = [
     { src: 'img/gr_hair_no1.jpg', type: 'no', cap: '密集虫卵状头皮画面：拒绝' },
     { src: 'img/gr_hair_no2.jpg', type: 'no', cap: '密集颗粒特写：拒绝' },
     { src: 'img/gr_hair_no3.jpg', type: 'no', cap: '厚重头屑：拒绝' },
-    { src: 'img/gr_hair_ok1.jpg', type: 'ok', cap: '真人轻微头屑：支持' },
+    { src: 'img/gr_hair_ok1.jpg', type: 'ok', cap: '零星头屑、不密集：支持' },
     { src: 'img/gr_hair_ok2.jpg', type: 'ok', cap: '卡通毛囊：支持' },
     { src: 'img/gr_hair_ok3.jpg', type: 'ok', cap: '卡通形式：支持' }
   ]

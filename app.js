@@ -31,7 +31,7 @@
     return `<article class="rule" data-rule="${r.id}">
       <div><div class="top">${dirPill(r)}${extra}${pill('gray', r.tag)}${pill('gray', indText(r))}</div>
       <h4>${esc(r.title)}</h4></div>
-      <p>${esc(r.summary)}</p>
+      <p>${esc(r.summary.replace(/#/g, ''))}</p>
       <span class="arrow">查看详情 ›</span>
     </article>`;
   }
@@ -217,7 +217,7 @@
     sheet.innerHTML = `<button class="close" aria-label="关闭">✕</button>
       <div class="top">${dirPill(r)}${pill('gray', catById[r.cat].name)}${pill('gray', r.l2)}</div>
       <h2>${esc(r.title)}</h2>
-      <div class="sum">${esc(r.summary)}</div>
+      <div class="sum">${esc(r.summary).replace(/#([^#]+)#/g, "<em class=\"hl\">$1</em>")}</div>
       <div class="tagpath"><span class="lb">拒审标签</span>${esc(catById[r.cat].name)} › ${esc(r.l2)} › <b>${esc(r.tag)}</b></div>
       ${r.related ? `<div class="tagpath rel"><span class="lb">相关标签</span>${r.related.map(x => `<span>${esc(x)}</span>`).join('')}</div>` : ''}
       <div class="kv"><span>适用行业<b>${esc(indText(r))}</b></span><span>流量范围<b>${esc(r.scope)}</b></span>${r.status ? `<span>执行情况<b>${esc(r.status)}</b></span>` : ''}</div>

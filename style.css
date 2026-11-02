@@ -171,7 +171,7 @@ mark{background:#fff1a8;color:inherit;border-radius:3px;padding:0 1px}
   .rule{grid-template-columns:1fr;padding:18px 20px}
   .rule .arrow{display:none}
 }
-.blk li em.hl{font-style:normal;font-weight:600;color:var(--blue);background:#e8f1fc;padding:1px 6px;border-radius:6px}
+.sheet .sum em.hl,.blk li em.hl{font-style:normal;font-weight:600;color:var(--blue);background:#e8f1fc;padding:1px 6px;border-radius:6px}
 
 .others{margin-top:20px;font-size:13px;color:var(--sub);display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;line-height:1.6}
 .others .label{margin-right:4px}

@@ -282,3 +282,7 @@ body.lock .fb-fab{display:none}
 .idf-other{width:100%;margin-top:10px;font:inherit;font-size:15px;padding:10px 14px;border:1px solid var(--line);border-radius:12px;outline:0;transition:border-color .2s,box-shadow .2s;animation:fade .2s}
 .idf-other:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,113,227,.12)}
 .idf-other[hidden]{display:none}
+
+.gallery figure.vid .ph{aspect-ratio:9/16;background:#000}
+.gallery figure.vid video{width:100%;height:100%;object-fit:contain;display:block;background:#000}
+.gallery figure.vid{cursor:default}

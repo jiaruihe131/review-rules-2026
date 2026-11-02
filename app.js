@@ -212,6 +212,7 @@
     if (r.images && r.images.length) {
       const wide = r.images.every(im => !/r2_|r18_1|r22|r16_1/.test(im.src));
       gal = `<div class="blk"><h5>案例参考</h5><div class="gallery ${wide ? 'wide' : ''}">${r.images.map(im =>
+        im.video ? `<figure class="vid"><div class="ph"><video src="${im.video}" poster="${im.src}" controls playsinline muted preload="none"></video>${im.type ? `<span class="badge ${im.type}">${im.type === 'ok' ? '支持' : '拒绝'}</span>` : ''}</div><figcaption>${esc(im.cap)}</figcaption></figure>` :
         `<figure data-img="${im.src}" data-cap="${esc(im.cap)}"><div class="ph"><img src="${im.src}" alt="${esc(im.cap)}" loading="lazy">${im.type ? `<span class="badge ${im.type}">${im.type === 'ok' ? '支持' : '拒绝'}</span>` : ''}</div><figcaption>${esc(im.cap)}</figcaption></figure>`).join('')}</div></div>`;
     }
     sheet.innerHTML = `<button class="close" aria-label="关闭">✕</button>

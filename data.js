@@ -138,13 +138,16 @@ window.RULES = [
     ]},
     { h: '通用：多人效果对比', items: [
       ['', '放宽前规则：必须带使用过程，结构为 A 痛点 + #A 使用# + B 痛点 + #B 使用# + #空镜# + C 好状态'],
-      ['ok', '可逆问题：不用加空镜，直接支持'],
-      ['ok', '不可逆问题：加空镜后支持；小图痛点 + 全屏好状态，也支持']
+      ['ok', '可逆问题：#无需对应人物的产品使用过程#、#不加空镜#，直接支持'],
+      ['ok', '不可逆问题：无需产品使用过程，#加空镜#后支持；小图痛点 + 全屏好状态，也支持']
     ]}
   ],
   images: [
     { src: 'img/r5_2.jpg', type: '', cap: '同一人效果对比：历史 vs 现在' },
-    { src: 'img/r5_1.jpg', type: '', cap: '多人效果对比：管控与通过场景' }
+    { src: 'img/r5_1.jpg', type: '', cap: '多人效果对比：管控与通过场景' },
+    { src: 'img/r5_v_qiezhen.jpg', video: 'img/r5_v_qiezhen.mp4', type: 'ok', cap: '同一人对比 · 切帧：支持' },
+    { src: 'img/r5_v_shijian.jpg', video: 'img/r5_v_shijian.mp4', type: 'ok', cap: '同一人对比 · 时间演变（第 1 天 → 第 20 天）：支持' },
+    { src: 'img/r5_v_lianguan.jpg', video: 'img/r5_v_lianguan.mp4', type: 'no', cap: '使用后连贯画面立即好转：不支持' }
   ]
 },
 {

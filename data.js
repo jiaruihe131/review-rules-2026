@@ -90,7 +90,6 @@ window.RULES = [
     { src: 'img/r2_8.jpg', type: 'no', cap: '拒绝案例' },
     { src: 'img/r2_9.jpg', type: 'no', cap: '拒绝案例' },
     { src: 'img/r2_10.jpg', type: 'no', cap: '拒绝案例' },
-    { src: 'img/r2_11.jpg', type: 'no', cap: '拒绝案例' },
     { src: 'img/r2_11.jpg', type: 'no', cap: '拒绝案例' }
   ]
 },

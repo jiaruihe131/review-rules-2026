@@ -78,6 +78,8 @@ window.RR_API = 'https://ghjqqz-gary-d1g24ywqt5096ad9c.service.tcloudbase.com/rr
         String(v || '').split('、').forEach(x => { const r = f.querySelector(`input[name="${n}"][value="${x}"]`); if (r) r.checked = true; });
       });
     }
+    f.addEventListener('input', () => { el.querySelector('.idf-err').hidden = true; });
+    f.addEventListener('change', () => { el.querySelector('.idf-err').hidden = true; });
     setTimeout(() => f.company.focus(), 50);
     const c = el.querySelector('.idf-cancel');
     if (c) c.onclick = () => { el.remove(); document.body.classList.remove('lock'); };

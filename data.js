@@ -342,7 +342,7 @@ window.RULES = [
   ]
 },
 {
-  id: 16, cat: 'fake', l2: '虚构产品功效', tag: '虚假功效或收益保障承诺', related: ['虚假夸大 › 虚构产品功效 › 非医疗行业使用涉医宣传', '虚假夸大 › 虚构产品功效 › 效果对比'], dir: 'loose', scope: '全流量竞价', ind: ['toothpaste', 'kids'], indNote: '个护、亲子（口腔）', status: '已执行',
+  id: 16, cat: 'fake', l2: '虚构产品功效', tag: '虚假功效或收益保障承诺', related: ['虚假夸大 › 虚构产品功效 › 非医疗行业使用涉医宣传', '虚假夸大 › 虚构产品功效 › 效果对比'], dir: 'loose', scope: '全流量竞价', ind: ['toothpaste', 'teen'], indNote: '个护、亲子（口腔）', status: '已执行',
   title: '牙齿健康：描述与画面规则',
   summary: '可以说“预防 / 改善 / 解决”+ 非医疗描述；绝对不能涉医。问题牙齿画面可单独展示，好坏牙对比一律不行。',
   blocks: [
@@ -396,7 +396,7 @@ window.RULES = [
   ]
 },
 {
-  id: 19, cat: 'fake', l2: '虚构产品功效', tag: '虚假功效或收益保障承诺', dir: 'loose', scope: '全流量竞价', ind: ['laundry'], status: '已执行',
+  id: 19, cat: 'fake', l2: '虚构产品功效', tag: '虚假功效或收益保障承诺', dir: 'loose', scope: '全流量竞价', ind: ['envclean'], status: '已执行',
   title: '洗衣机清洁产品：可以用转动实验画面',
   summary: '以前只能拍手部擦洗，现在可以用实验场景演示对滚筒内壁的清洁效果。',
   blocks: [
@@ -434,7 +434,7 @@ window.RULES = [
   ]
 },
 {
-  id: 22, cat: 'fake', l2: '绝对化/顶级用语', tag: '绝对化用语', dir: 'loose', scope: '全流量竞价', ind: ['kids'], status: '已执行',
+  id: 22, cat: 'fake', l2: '绝对化/顶级用语', tag: '绝对化用语', dir: 'loose', scope: '全流量竞价', ind: ['teen'], indNote: '亲子', status: '已执行',
   title: '“亚洲第一”资质画面：可以展示',
   summary: '有市场地位声明资质的，可以展示“亚洲第一”资质图片，但文案要改成“销售额第一”。',
   blocks: [

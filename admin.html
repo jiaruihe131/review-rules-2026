@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>访问记录后台</title>
+<link rel="stylesheet" href="style.css">
+<style>
+main{padding-top:40px}
+.adm-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.adm-head h1{font-size:36px;font-weight:700;letter-spacing:-.02em}
+.adm-head p{font-size:13px;color:var(--sub);margin-top:6px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.tools input,.tools select{font:inherit;font-size:14px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;outline:0}
+.tools input{width:200px}
+.tools button{font-size:14px;padding:8px 14px;border-radius:10px;background:var(--soft)}
+.tools button.pri{background:var(--blue);color:#fff}
+.kpi{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}
+.k{background:#fff;border-radius:16px;padding:20px 22px}
+.k b{display:block;font-size:30px;font-weight:600;letter-spacing:-.02em}
+.k span{font-size:13px;color:var(--sub)}
+.panel{background:#fff;border-radius:18px;padding:22px 24px;margin-bottom:18px}
+.panel h3{font-size:16px;font-weight:600;margin-bottom:14px}
+.panel h3 small{font-weight:400;color:var(--sub);font-size:12px;margin-left:6px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+.trend{display:flex;align-items:flex-end;gap:4px;height:140px}
+.col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.col i{width:100%;max-width:22px;background:var(--blue);border-radius:4px 4px 0 0;min-height:2px}
+.col span{font-size:10px;color:var(--sub);margin-top:4px}
+.bar{display:grid;grid-template-columns:minmax(0,1.3fr) 1fr 36px;gap:10px;align-items:center;font-size:13px;padding:5px 0}
+.bl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bt{height:8px;background:var(--soft);border-radius:4px;overflow:hidden}
+.bt i{display:block;height:100%;background:var(--blue);border-radius:4px}
+.bar b{text-align:right;font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:12px;color:var(--sub);font-weight:500;padding:8px 10px;border-bottom:1px solid #ececf0}
+td{padding:12px 10px;border-bottom:1px solid #f2f2f5;vertical-align:top}
+td small{display:block;color:var(--sub);font-size:12px}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:#fafafc}
+.empty{color:var(--sub);font-size:13px;text-align:center;padding:16px 0}
+.login{max-width:380px;margin:12vh auto;background:#fff;border-radius:22px;padding:36px}
+.login h1{font-size:26px;font-weight:700;margin-bottom:6px}
+.login p{font-size:14px;color:var(--sub);margin-bottom:20px}
+.login input{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;outline:0;margin-bottom:12px}
+.login button{width:100%;background:var(--blue);color:#fff;font-size:16px;padding:12px;border-radius:12px}
+.login .err{color:var(--red);font-size:13px;min-height:18px}
+.plist{list-style:none;max-height:60vh;overflow-y:auto;margin-top:16px}
+.plist li{display:grid;grid-template-columns:86px 76px 1fr;gap:8px;font-size:14px;padding:9px 0;border-bottom:1px solid #f2f2f5}
+.plist time{color:var(--sub);font-size:13px}
+.plist em{font-style:normal;font-size:12px;background:var(--soft);border-radius:999px;padding:1px 8px;justify-self:start;height:fit-content}
+.fb-tabs{display:flex;gap:6px;margin-bottom:10px}
+.fb-tabs button{font-size:13px;padding:5px 12px;border-radius:999px;color:var(--sub)}
+.fb-tabs button.on{background:var(--text);color:#fff}
+.fbi{display:grid;grid-template-columns:1fr auto;gap:6px 16px;padding:14px 0;border-bottom:1px solid #f2f2f5}
+.fbi .meta{font-size:12px;color:var(--sub);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.fbi .meta em{font-style:normal;background:var(--amber-bg);color:var(--amber);padding:1px 8px;border-radius:999px;font-weight:500}
+.fbi p{font-size:15px;line-height:1.6;grid-column:1;white-space:pre-wrap}
+.fbi .act{grid-row:1/3;grid-column:2;align-self:center}
+.fbi .act button{font-size:13px;padding:6px 12px;border-radius:999px;background:var(--soft)}
+.fbi.done p{color:var(--sub)}
+.fbi.done .meta em{background:var(--soft);color:var(--sub)}
+@media (max-width:860px){.kpi{grid-template-columns:repeat(2,1fr)}.g2,.g3{grid-template-columns:1fr}.tools input{width:100%}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-inner"><a href="./index.html" class="brand">2026 个护家清亲子审核规则</a><div class="nav-links"><a class="on">访问记录后台</a></div></div></nav>
+
+<div id="login" class="login" hidden>
+  <h1>访问记录后台</h1>
+  <p>仅限内部使用，请输入后台密码。</p>
+  <form id="loginForm"><input id="pass" type="password" placeholder="后台密码" autocomplete="current-password"><div class="err" id="loginErr"></div><button type="submit">进入</button></form>
+</div>
+
+<main id="main" hidden>
+  <div class="adm-head">
+    <div><h1>访问记录</h1><p id="status">加载中…</p></div>
+    <div class="tools">
+      <input id="filter" placeholder="筛选公司 / 称呼 / 身份 / 行业">
+      <select id="days"><option value="7">近 7 天</option><option value="30" selected>近 30 天</option><option value="90">近 90 天</option></select>
+      <button id="refresh">刷新</button>
+      <button id="csv" class="pri">导出 CSV</button>
+    </div>
+  </div>
+
+  <div class="kpi" id="kpi"></div>
+  <div class="panel" id="fbPanel">
+    <h3>意见反馈<small id="fbCount"></small></h3>
+    <div class="fb-tabs"><button data-fb="todo" class="on">待处理</button><button data-fb="done">已处理</button><button data-fb="all">全部</button></div>
+    <div id="fbList"></div>
+  </div>
+  <div class="panel"><h3>每日访客<small>按天去重</small></h3><div class="trend" id="trend"></div></div>
+  <div class="g2">
+    <div class="panel"><h3>被看最多的规则</h3><div id="topRules"></div></div>
+    <div class="panel"><h3>访问最多的页面</h3><div id="topPages"></div></div>
+  </div>
+  <div class="g2">
+    <div class="panel"><h3>热门搜索词</h3><div id="topSearch"></div></div>
+    <div class="panel"><h3>搜不到结果的词<small>可以据此补内容</small></h3><div id="zeroSearch"></div></div>
+  </div>
+  <div class="g2">
+    <div class="panel"><h3>访客行业分布<small>多选，按人次计</small></h3><div id="byInd"></div></div>
+    <div class="panel"><h3>访客身份分布<small>多选，按人次计</small></h3><div id="byRole"></div></div>
+  </div>
+  <div class="panel">
+    <h3>访客明细<small>点击一行查看这位访客的完整浏览记录</small></h3>
+    <table><thead><tr><th>公司 / 称呼</th><th>身份</th><th>行业</th><th>看过规则</th><th>阅读时长</th><th>地区</th><th>最近访问</th></tr></thead><tbody id="people"></tbody></table>
+  </div>
+</main>
+
+<div class="overlay" id="person" hidden>
+  <div class="sheet"><button class="close x" aria-label="关闭">✕</button><h2 id="pTitle"></h2><div class="kv" id="pMeta"></div><ul class="plist" id="pList"></ul><button id="pDel" style="margin-top:18px;font-size:13px;color:var(--red)">删除这位访客的记录（如测试数据）</button></div>
+</div>
+
+<script src="data.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

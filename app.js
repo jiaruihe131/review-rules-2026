@@ -105,7 +105,15 @@
           搜索规则，如：仿新闻、头皮屑、限时限量
         </button>
         <p class="stats-line"><b>${n}</b> 项规则变化 · <b class="g">${loose}</b> 项放宽 · <b class="r">${tight}</b> 项收紧</p>
-            </section>
+        ${(window.UPDATES || []).length ? `<div class="upd">
+          <div class="upd-h"><span class="upd-dot"></span>最新更新</div>
+          ${window.UPDATES.map(u => `<button class="upd-i" data-rule="${u.rule}">
+            <span class="upd-date">${esc(u.date)}</span>
+            <span class="upd-tag ${u.tag === '收紧' ? 'tight' : 'loose'}">${esc(u.tag)}</span>
+            <span class="upd-body"><b>${esc(u.title)}</b><small>${esc(u.text)}</small></span>
+            <em>›</em></button>`).join('')}
+        </div>` : ''}
+      </section>
       ${focus}
       <h2 class="sec-title" style="margin-top:80px">全部拒审大类</h2>
       <p class="sec-sub">按审核标签树的一级标签划分，与拒审理由里的类别一致。</p>
